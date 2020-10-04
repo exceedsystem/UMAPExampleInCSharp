@@ -15,7 +15,7 @@ namespace UMAPExampleInCSharp
         const string LABEL_FILE_URL = "http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz";
         const string IMAGE_FILE_URL = "http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz";
 
-        // Name of MNIST files 
+        // Name of MNIST files
         const string LABEL_FILE_NAME = "t10k-labels-idx1-ubyte.gz";
         const string IMAGE_FILE_NAME = "t10k-images-idx3-ubyte.gz";
 
@@ -37,7 +37,7 @@ namespace UMAPExampleInCSharp
             // Load the MNIST image data
             var pixels = GetImages().ToArray();
 
-            // UMAP
+            // Dimension reduction with UMAP
             var umap = new Umap();
             var epochs = umap.InitializeFit(pixels);
             for (var i = 0; i < epochs; ++i)
@@ -87,7 +87,6 @@ namespace UMAPExampleInCSharp
             // Number of images(10000)
             var numOfItems = BitConverter.ToInt32(binData.Skip(4).Take(4).Reverse().ToArray());
 
-            // Byte array into chunks
             return binData.Skip(8).Select((o) => (float)o);
         }
 
